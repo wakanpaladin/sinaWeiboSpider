@@ -60,7 +60,7 @@ function getFansRecur(userId){
 }
 
 function getUserLst(htmlContent,userId){
-    var matched = htmlContent.match(/\"cnfList\s*\\\".*\/ul>/gm);
+    var matched = htmlContent.match(/\"follow_list\s*\\\".*\/ul>/gm);
 
     if(matched) {
         var str = matched[0].replace(/(\\n|\\t|\\r)/g," ").replace(/\\/g,"");
@@ -69,7 +69,7 @@ function getUserLst(htmlContent,userId){
         var $ = cheerio.load(ulStr);
 
         var myFans = [];
-        $("li").map(function (index, item) {
+        $("li[action-data]").map(function (index, item) {
             var userInfo = getUserInfo($,this);
 
             if(userInfo){
@@ -98,7 +98,7 @@ function getUserLst(htmlContent,userId){
 }
 
 function getUserInfo($,liSelector){
-    var liActionData = $(liSelector).attr("action-data").split("&");
+    var liActionData =$(liSelector).attr("action-data").split("&");
     var sex = "unknown";
 
     if(liActionData.length == 3){
@@ -106,6 +106,12 @@ function getUserInfo($,liSelector){
     }
 
     var alnk = $(liSelector).find("a[usercard]");
+
+    if(alnk.length < 1){
+        console.log("ddd");
+        return null;
+    }
+
     var addr =  $(liSelector).find("div.name span").text().trim();
 
     var infoSel = $(liSelector).find("div.con_left div.info");

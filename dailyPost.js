@@ -84,7 +84,7 @@ function fetchUserWeibo(request,userId,callback){
     });
 }
 
-weiboLoginModule.login("13572475053","a111111",function(err,cookieColl){
+weiboLoginModule.login("yourAccount","yourPwd",function(err,cookieColl){
     if(!err){
         var request = Request.defaults({jar: cookieColl});
         var userColl = db.get("users");

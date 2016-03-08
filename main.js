@@ -151,8 +151,8 @@ function log(msg){
 }
 
 function start() {
-    var userName = "yourWeiboAccount";
-    var password = "pwd";
+    var userName = "13572475053";
+    var password = "a111111";
 
     var preLoginUrl = "http://login.sina.com.cn/sso/prelogin.php?entry=weibo&callback=sinaSSOController.preloginCallBack&su=&rsakt=mod&checkpin=1&client=ssologin.js(v1.4.11)&_=" + (new Date()).getTime();
 
